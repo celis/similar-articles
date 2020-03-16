@@ -45,8 +45,6 @@ class SkipGram(nn.Module):
 
     def save_embedding(self, idx_to_word_map: dict, path: str):
         """
-        Save all embeddings to file.
-        As this class only record word id, so the map from id to word has to be transfered from outside.
         """
         embeddings = self._input_embeddings()
 
