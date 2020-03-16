@@ -6,6 +6,7 @@ import torch.nn.functional as F
 
 class SkipGram(nn.Module):
     """
+    Implementation of Skip-Gram model
     """
 
     def __init__(self, vocabulary_size: int, embedding_size: int):
@@ -29,8 +30,12 @@ class SkipGram(nn.Module):
         positive_embedding = self.out_embedding(positive_labels)
         negative_embedding = self.out_embedding(negative_labels)
 
-        log_positive = torch.bmm(positive_embedding, input_embedding.unsqueeze(2)).squeeze()
-        log_negative = torch.bmm(negative_embedding, -input_embedding.unsqueeze(2)).squeeze()
+        log_positive = torch.bmm(
+            positive_embedding, input_embedding.unsqueeze(2)
+        ).squeeze()
+        log_negative = torch.bmm(
+            negative_embedding, -input_embedding.unsqueeze(2)
+        ).squeeze()
         log_positive = F.logsigmoid(log_positive).sum(1)
         log_negative = F.logsigmoid(log_negative).sum(1)
         loss = log_positive + log_negative
@@ -39,17 +44,18 @@ class SkipGram(nn.Module):
 
     def _input_embeddings(self) -> np.array:
         """
-        :return:
+        Returns word embeddings
         """
         return self.in_embedding.weight.data.numpy()
 
     def save_embedding(self, idx_to_word_map: dict, path: str):
         """
+        Saves word embeddings in a format convenient for later use with the Gensim library
         """
         embeddings = self._input_embeddings()
 
         file = open(path, "w", encoding="utf-8")
-        file.write('%d %d\n' % (len(idx_to_word_map) - 1, self.embedding_size))
+        file.write("%d %d\n" % (len(idx_to_word_map) - 1, self.embedding_size))
         for idx, word in idx_to_word_map.items():
             if word != "unknown":
                 embedding = embeddings[idx]

@@ -3,6 +3,7 @@ from typing import List
 
 class ReferencesDataSource:
     """
+    Class responsible for reading references data from disk
     """
 
     def __init__(self, path: str):
@@ -10,7 +11,7 @@ class ReferencesDataSource:
 
     def transform(self) -> List:
         """
-        :return:
+        Returns list with collection of references
         """
         with open(self.path) as file:
             recids = file.readlines()

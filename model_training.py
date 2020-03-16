@@ -14,9 +14,8 @@ if __name__ == "__main__":
     model_training_config = ModelTrainingConfig("configs/model_config.json")
 
     references_datasource = ReferencesDataSource(model_training_config.data)
-    references_dataset = ReferencesDataset(references_datasource, **model_training_config.dataset)
+    references_dataset = ReferencesDataset(
+        references_datasource, **model_training_config.dataset
+    )
 
     train(references_dataset, **model_training_config.trainer)
-
-
-

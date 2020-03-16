@@ -15,6 +15,7 @@ def train(
     num_workers: int,
 ):
     """
+    Trains model and saves final embeddings to disk
     """
     model = SkipGram(references_dataset.vocabulary_size, embedding_size)
 
@@ -32,12 +33,7 @@ def train_epoch(
     num_workers: int,
 ):
     """
-    :param model:
-    :param references_dataset:
-    :param batch_size:
-    :param learning_rate:
-    :param num_workers:
-    :return:
+    trains model for one epoch
     """
 
     dataloader = DataLoader(

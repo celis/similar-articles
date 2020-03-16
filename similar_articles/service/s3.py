@@ -3,12 +3,16 @@ from similar_articles.configuration import Configuration
 
 
 class S3:
+    """
+    Service class handling connection with AWS S3
+    """
+
     def __init__(self, config: Configuration):
         self.config = config
 
     def _boto3_client(self):
         """
-        :return:
+        creates a boto3 client instance
         """
         boto3_client = boto3.client(
             "s3",
@@ -20,6 +24,8 @@ class S3:
 
     def download(self, key: str, filename: str):
         """
+        Downloads file from S3
+
         key: The name of the key to download from.
         filename: The path to the file to download to.
         """
@@ -28,6 +34,8 @@ class S3:
 
     def upload(self, filename: str, key: str):
         """
+        Uploads file to S3
+
         filename: The path to the file to upload.
         key: The name of the key to upload to.
         """
