@@ -51,6 +51,7 @@ class SkipGram(nn.Module):
         embeddings = self._input_embeddings()
 
         file = open(path, "w", encoding="utf-8")
+        file.write('%d %d\n' % (len(idx_to_word_map), self.embed_size))
         for idx, word in idx_to_word_map.items():
             if word != "unknown":
                 embedding = embeddings[idx]
