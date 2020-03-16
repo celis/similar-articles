@@ -1,0 +1,13 @@
+{
+  "references_data": "input_data/test_references_data.txt",
+  "context_window": 5,
+  "max_vocabulary_size": 10000,
+  "negatives_samples": 10,
+  "power_negatives": 0.75,
+  "embedding_size": 50,
+  "epochs": 1,
+  "batch_size": 100,
+  "learning_rate": 0.1,
+  "num_workers": 1,
+  "output_path": "output_data/embeddings.txt"
+}

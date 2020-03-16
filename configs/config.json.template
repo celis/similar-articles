@@ -1,0 +1,8 @@
+{
+   "s3":{
+      "region_name":null,
+      "bucket":null,
+      "access_key":null,
+      "secret_key":null
+   }
+}
