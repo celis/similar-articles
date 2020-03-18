@@ -41,7 +41,7 @@ def train_epoch(
     )
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     model.train()
-    for idx, (input_labels, positive_labels, negative_labels) in enumerate(dataloader):
+    for i, (input_labels, positive_labels, negative_labels) in enumerate(dataloader):
         input_labels = input_labels.long()
         positive_labels = positive_labels.long()
         negative_labels = negative_labels.long()
@@ -51,5 +51,5 @@ def train_epoch(
         loss.backward()
         optimizer.step()
 
-        if idx % 100 == 0:
-            logging.info(f"train iteration: { idx }, loss: { loss.item() }")
+        if i % 100 == 0:
+            logging.info(f"train iteration: { i }, loss: { loss.item() }")
